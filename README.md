@@ -1,4 +1,4 @@
-# HMVC
+# GIS CI
 Core Sistem Informasi Berbasis Code Igniter untuk Pemula
 
 untuk user Administrator
