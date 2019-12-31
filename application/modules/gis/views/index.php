@@ -5,7 +5,7 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
         <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-6">
         <?= $this->session->flashdata('message') ?>
         
         <form action="<?php base_url('gis') ?>" method="post" enctype="multipart/form-data" >
@@ -20,7 +20,7 @@
 							<div class="form-group">
 								<label for="name">Latitude*</label>
 								<input class="form-control <?php echo form_error('latitude') ? 'is-invalid':'' ?>"
-								 type="text" name="latitude" value="<?= set_value('latitude'); ?>"/>
+								 type="text"id="latitude" name="latitude" value="<?= set_value('latitude'); ?>"/>
 								<div class="invalid-feedback">
 									<?php echo form_error('latitude') ?>
 								</div>
@@ -28,13 +28,16 @@
 							<div class="form-group">
 								<label for="name">Longitude*</label>
 								<input class="form-control <?php echo form_error('longitude') ? 'is-invalid':'' ?>"
-								 type="text" name="longitude" value="<?= set_value('longitude'); ?>"/>
+								 type="text"id="longitude" name="longitude" value="<?= set_value('longitude'); ?>"/>
 								<div class="invalid-feedback">
 									<?php echo form_error('longitude') ?>
 								</div>
 							</div>
-							<input class="btn btn-success" type="submit" name="btn" value="Save" />&nbsp; <a href="<?= base_url('gis');?> " class="btn btn-warning">Cancel</a>
+							<input class="btn btn-success" type="submit" name="btn" value="Save" />&nbsp; <a href="<?= base_url('gis');?> " class="btn btn-warning">Cancel</a>&nbsp; <a href="<?= base_url('gis/mapmarker');?> " class="btn btn-info">Lihat Peta</a>
             </form>
+        </div>
+        <div class="col-lg-6">
+        <?php echo $map['html']; ?>
         </div>
         </div>
         <hr>

@@ -17,6 +17,21 @@ class Gis extends CI_Controller {
             $this->form_validation->set_rules('nama','nama','required');
             $this->form_validation->set_rules('latitude','latitude','required');
             $this->form_validation->set_rules('longitude','longitude','required');
+/* gmaps*/
+$this->load->library('googlemaps');
+$config['zoom'] = 'auto';
+$this->googlemaps->initialize($config);
+
+$marker = array();
+$marker['position'] = '-7.2622734,112.7460179';
+$marker['draggable'] = true;
+$marker['ondragend'] = '
+document.getElementById("latitude").value = event.latLng.lat();
+document.getElementById("longitude").value = event.latLng.lng();
+';
+$this->googlemaps->add_marker($marker);
+$data['map'] = $this->googlemaps->create_map();
+/* gmaps*/
                 if($this->form_validation->run()==false ){
                 $this->load->view('templates/header',$data);
                 $this->load->view('templates/sidebar',$data);
@@ -53,7 +68,22 @@ class Gis extends CI_Controller {
             $this->form_validation->set_rules('nama','nama','required');
             $this->form_validation->set_rules('latitude','latitude','required');
             $this->form_validation->set_rules('longitude','longitude','required');
-            
+            /* gmaps*/
+$this->load->library('googlemaps');
+$config['zoom'] = 'auto';
+$this->googlemaps->initialize($config);
+$latitude = $data['getlokasi']['latitude'];
+$longitude = $data['getlokasi']['longitude'];
+$marker = array();
+$marker['position'] = "$latitude,$longitude";
+$marker['draggable'] = true;
+$marker['ondragend'] = '
+document.getElementById("latitude").value = event.latLng.lat();
+document.getElementById("longitude").value = event.latLng.lng();
+';
+$this->googlemaps->add_marker($marker);
+$data['map'] = $this->googlemaps->create_map();
+/* gmaps*/
             if($this->form_validation->run()==false ){
                 $this->load->view('templates/header',$data);
                 $this->load->view('templates/sidebar',$data);
@@ -74,7 +104,35 @@ class Gis extends CI_Controller {
             
         }
     
+        public function mapmarker(){
+            $data['title']='Lokasi';
+            $data['user']= $this->db->get_where('user',['email'=>
+            $this->session->userdata('email')])->row_array();
+            $data['lokasi']=$this->db->get('lokasi')->result_array();
+                        /* gmaps*/
+$this->load->library('googlemaps');
+$config['zoom'] = 'auto';
+$this->googlemaps->initialize($config);
 
+foreach($data['lokasi'] as $dt) :
+$latitude = $dt['latitude'];
+$longitude = $dt['longitude'];
+$nama = $dt['nama'];
+$marker = array();
+$marker['position'] = "$latitude,$longitude";
+$marker['infowindow_content'] = "$nama";
+$this->googlemaps->add_marker($marker);
+endforeach;
+
+$data['map'] = $this->googlemaps->create_map();
+/* gmaps*/
+            $this->load->view('templates/header',$data);
+            $this->load->view('templates/sidebar',$data);
+            $this->load->view('templates/topbar',$data);
+            $this->load->view('gis/mapmarker',$data);
+            $this->load->view('templates/footer');
+
+        } 
         
 //////////// END 
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2019 at 03:01 PM
+-- Generation Time: Dec 31, 2019 at 06:53 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.5.35
 
@@ -21,6 +21,29 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `gisci` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `gisci`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lokasi`
+--
+
+DROP TABLE IF EXISTS `lokasi`;
+CREATE TABLE `lokasi` (
+  `id` int(5) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `latitude` varchar(50) NOT NULL,
+  `longitude` varchar(50) NOT NULL,
+  `image` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `lokasi`
+--
+
+INSERT INTO `lokasi` (`id`, `nama`, `latitude`, `longitude`, `image`) VALUES
+(1, 'Monkasel', '-7.264316806849713', '112.75048109580075', ''),
+(2, 'Museum Siola', '-7.255632263613531', '112.7378639845947', '');
 
 -- --------------------------------------------------------
 
@@ -72,7 +95,8 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (3, 2, 2),
 (4, 1, 3),
 (5, 3, 2),
-(6, 3, 3);
+(6, 3, 3),
+(7, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -93,7 +117,8 @@ CREATE TABLE `user_menu` (
 INSERT INTO `user_menu` (`id`, `menu`) VALUES
 (1, 'Admin'),
 (2, 'User'),
-(3, 'Menu');
+(3, 'Menu'),
+(4, 'GIS');
 
 -- --------------------------------------------------------
 
@@ -144,7 +169,8 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (7, 1, 'Role', 'admin/role', 'fas fa-fw fa-user-tie', 1),
 (8, 2, 'Change Password', 'user/changepassword', 'fas fa-fw fa-key', 1),
 (9, 1, 'User Login', 'admin/userlogin', 'fas fa-fw fa-user-alt', 1),
-(10, 1, 'Web Setting', 'admin/websetting', 'fas fa-fw fa-wrench', 1);
+(10, 1, 'Web Setting', 'admin/websetting', 'fas fa-fw fa-wrench', 1),
+(11, 4, 'Lokasi', 'gis', 'fas fa-fw fa-wrench', 1);
 
 -- --------------------------------------------------------
 
@@ -193,6 +219,12 @@ INSERT INTO `web_setting` (`id`, `name`, `is_active`) VALUES
 --
 
 --
+-- Indexes for table `lokasi`
+--
+ALTER TABLE `lokasi`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -239,6 +271,11 @@ ALTER TABLE `web_setting`
 --
 
 --
+-- AUTO_INCREMENT for table `lokasi`
+--
+ALTER TABLE `lokasi`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
@@ -247,12 +284,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `user_role`
 --
@@ -262,7 +299,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `user_token`
 --
