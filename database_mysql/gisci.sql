@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2019 at 02:39 PM
+-- Generation Time: Dec 31, 2019 at 03:01 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.5.35
 
@@ -17,10 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hmvc`
+-- Database: `gisci`
 --
-CREATE DATABASE IF NOT EXISTS `hmvc` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `hmvc`;
+CREATE DATABASE IF NOT EXISTS `gisci` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `gisci`;
 
 -- --------------------------------------------------------
 
@@ -242,7 +242,7 @@ ALTER TABLE `web_setting`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `user_access_menu`
 --
@@ -257,7 +257,7 @@ ALTER TABLE `user_menu`
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
