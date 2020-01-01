@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 function is_logged_in()
 {
     $ci = get_instance();

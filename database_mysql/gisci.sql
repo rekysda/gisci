@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2019 at 06:53 PM
+-- Generation Time: Jan 01, 2020 at 05:40 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.5.35
 
@@ -170,7 +170,8 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (8, 2, 'Change Password', 'user/changepassword', 'fas fa-fw fa-key', 1),
 (9, 1, 'User Login', 'admin/userlogin', 'fas fa-fw fa-user-alt', 1),
 (10, 1, 'Web Setting', 'admin/websetting', 'fas fa-fw fa-wrench', 1),
-(11, 4, 'Lokasi', 'gis', 'fas fa-fw fa-wrench', 1);
+(11, 4, 'Lokasi', 'gis', 'fas fa-fw fa-wrench', 1),
+(12, 4, 'My Location', 'gis/mylocation', 'fas fa-fw fa-globe', 1);
 
 -- --------------------------------------------------------
 
@@ -299,7 +300,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `user_token`
 --

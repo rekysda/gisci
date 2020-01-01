@@ -94,6 +94,41 @@
   }
   )
   </script>
+
+<script>
+var view = document.getElementById("tampilkan");
+var url = document.getElementById("url");
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        view.innerHTML = "Yah browsernya ngga support Geolocation bro!";
+    }
+}
+ function showPosition(position) {
+    view.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude; 
+    url.innerHTML = "<a href=<?= base_url('gis/mylocationmap/')?>" + position.coords.latitude + 
+    "/" + position.coords.longitude +" class='btn btn-info'>Lihat Peta</a>";
+ }
+ 
+ function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            view.innerHTML = "Yah, mau deteksi lokasi tapi ga boleh :("
+            break;
+        case error.POSITION_UNAVAILABLE:
+            view.innerHTML = "Yah, Info lokasimu nggak bisa ditemukan nih"
+            break;
+        case error.TIMEOUT:
+            view.innerHTML = "Requestnya timeout bro"
+            break;
+        case error.UNKNOWN_ERROR:
+            view.innerHTML = "An unknown error occurred."
+            break;
+    }
+ }
+</script>
 </body>
 
 </html>

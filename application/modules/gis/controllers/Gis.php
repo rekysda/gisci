@@ -133,7 +133,59 @@ $data['map'] = $this->googlemaps->create_map();
             $this->load->view('templates/footer');
 
         } 
-        
+        public function mylocation(){
+            $data['title']='My Location';
+            $data['user']= $this->db->get_where('user',['email'=>
+            $this->session->userdata('email')])->row_array();
+                        /* gmaps*/
+
+$this->load->library('googlemaps');
+$config['center'] = 'auto';
+$config['zoom'] = 'auto';
+$this->googlemaps->initialize($config);
+$marker = array();
+$marker['position'] = "auto";
+$marker['infowindow_content'] = "NAMA";
+$this->googlemaps->add_marker($marker);
+
+$data['map'] = $this->googlemaps->create_map();
+/* gmaps*/
+            $this->load->view('templates/header',$data);
+            $this->load->view('templates/sidebar',$data);
+            $this->load->view('templates/topbar',$data);
+            $this->load->view('gis/mylocation',$data);
+            $this->load->view('templates/footer');
+
+        } 
+        public function mylocationmap($latitude,$longitude){
+            $data['title']='My Location';
+            $data['user']= $this->db->get_where('user',['email'=>
+            $this->session->userdata('email')])->row_array();
+
+            $data['latitude'] = "$latitude";
+            $data['longitude'] = "$longitude";
+            $nama = $data['user']['name'];
+            $email = $data['user']['email'];
+            $image = "<img width='50px' src='".base_url('assets/img/profile/'.$data['user']['image'])."'>";
+  /* gmaps*/
+
+  $this->load->library('googlemaps');
+  $config['center'] = "$latitude,$longitude";
+  $config['zoom'] = 'auto';
+  $this->googlemaps->initialize($config);
+  $marker = array();
+  $marker['position'] = "$latitude,$longitude";
+  $marker['infowindow_content'] = "<table><tr><td>$image</td><td>$nama<br>$email</td></tr></table>";
+  $this->googlemaps->add_marker($marker);
+  
+  $data['map'] = $this->googlemaps->create_map();
+  /* gmaps*/
+              $this->load->view('templates/header',$data);
+              $this->load->view('templates/sidebar',$data);
+              $this->load->view('templates/topbar',$data);
+              $this->load->view('gis/mylocationmap',$data);
+              $this->load->view('templates/footer');
+        }
 //////////// END 
 }
  
