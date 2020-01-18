@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2020 at 08:45 AM
--- Server version: 5.6.16
--- PHP Version: 5.5.11
+-- Generation Time: Jan 18, 2020 at 06:43 AM
+-- Server version: 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -25,17 +25,37 @@ USE `gisci`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `koordinatismap`
+--
+
+DROP TABLE IF EXISTS `koordinatismap`;
+CREATE TABLE IF NOT EXISTS `koordinatismap` (
+`id` int(5) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `position` varchar(500) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `koordinatismap`
+--
+
+INSERT INTO `koordinatismap` (`id`, `nama`, `position`) VALUES
+(2, 'K.Tidur', '284,75,396,77,396,194,284,192'),
+(3, 'Teras', '401,374,516,380,517,405,398,406');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `lokasi`
 --
 
 DROP TABLE IF EXISTS `lokasi`;
 CREATE TABLE IF NOT EXISTS `lokasi` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
+`id` int(5) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `latitude` varchar(50) NOT NULL,
   `longitude` varchar(50) NOT NULL,
-  `image` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
+  `image` varchar(50) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -54,7 +74,7 @@ INSERT INTO `lokasi` (`id`, `nama`, `latitude`, `longitude`, `image`) VALUES
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `username` varchar(50) NOT NULL,
   `email` varchar(128) NOT NULL,
@@ -62,8 +82,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(256) NOT NULL,
   `role_id` int(11) NOT NULL,
   `is_active` int(1) NOT NULL,
-  `date_created` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `date_created` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
@@ -82,10 +101,9 @@ INSERT INTO `user` (`id`, `name`, `username`, `email`, `image`, `password`, `rol
 
 DROP TABLE IF EXISTS `user_access_menu`;
 CREATE TABLE IF NOT EXISTS `user_access_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `menu_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `menu_id` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
@@ -110,9 +128,8 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 
 DROP TABLE IF EXISTS `user_menu`;
 CREATE TABLE IF NOT EXISTS `user_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `menu` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
+`id` int(11) NOT NULL,
+  `menu` varchar(128) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
@@ -134,9 +151,8 @@ INSERT INTO `user_menu` (`id`, `menu`) VALUES
 
 DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE IF NOT EXISTS `user_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role` varchar(256) NOT NULL,
-  PRIMARY KEY (`id`)
+`id` int(11) NOT NULL,
+  `role` varchar(256) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -155,13 +171,12 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 
 DROP TABLE IF EXISTS `user_sub_menu`;
 CREATE TABLE IF NOT EXISTS `user_sub_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
   `title` varchar(128) NOT NULL,
   `url` varchar(128) NOT NULL,
   `icon` varchar(128) NOT NULL,
-  `is_active` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  `is_active` int(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
@@ -190,11 +205,10 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 
 DROP TABLE IF EXISTS `user_token`;
 CREATE TABLE IF NOT EXISTS `user_token` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `email` varchar(128) NOT NULL,
   `token` varchar(128) NOT NULL,
-  `date_created` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `date_created` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
@@ -212,10 +226,9 @@ INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
 
 DROP TABLE IF EXISTS `web_setting`;
 CREATE TABLE IF NOT EXISTS `web_setting` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(512) NOT NULL,
-  `is_active` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `is_active` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -226,6 +239,113 @@ INSERT INTO `web_setting` (`id`, `name`, `is_active`) VALUES
 (1, 'signup_member', 1),
 (2, 'forgot_password', 1);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `koordinatismap`
+--
+ALTER TABLE `koordinatismap`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lokasi`
+--
+ALTER TABLE `lokasi`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_access_menu`
+--
+ALTER TABLE `user_access_menu`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_menu`
+--
+ALTER TABLE `user_menu`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_role`
+--
+ALTER TABLE `user_role`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_sub_menu`
+--
+ALTER TABLE `user_sub_menu`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_token`
+--
+ALTER TABLE `user_token`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `web_setting`
+--
+ALTER TABLE `web_setting`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `koordinatismap`
+--
+ALTER TABLE `koordinatismap`
+MODIFY `id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `lokasi`
+--
+ALTER TABLE `lokasi`
+MODIFY `id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `user_access_menu`
+--
+ALTER TABLE `user_access_menu`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `user_menu`
+--
+ALTER TABLE `user_menu`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `user_role`
+--
+ALTER TABLE `user_role`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `user_sub_menu`
+--
+ALTER TABLE `user_sub_menu`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `user_token`
+--
+ALTER TABLE `user_token`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `web_setting`
+--
+ALTER TABLE `web_setting`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
