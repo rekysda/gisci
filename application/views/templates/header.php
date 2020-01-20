@@ -21,7 +21,9 @@
    <!-- Custom styles for this page -->
    <link href="<?= base_url('assets/');?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
    <?php echo $map['js']; ?>
-   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+   <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <script type="text/javascript" src="<?= base_url('assets/js/jquery.maphilight.js')?>"></script>
+
   </head>
 
 <body id="page-top">

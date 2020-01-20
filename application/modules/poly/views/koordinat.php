@@ -4,12 +4,13 @@
 
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
-        <div class="row">
-        <img src="<?= base_url('assets/img/denahrumah.jpg')?>" usemap='#petaku'>
+<div class="row">
+<img src="<?= base_url('assets/img/denahrumah.jpg')?>" class="map" usemap='#petaku'>
 <map name="petaku" id="petaku">
-<area  shape="poly" coords="284,75,396,77,396,194,284,192"href="#"title="Kamar Tamu"data-maphilight='{"stroke":false,"fillColor":"ff0000","fillOpacity":1,"alwaysOn":true}' >
-<area  shape="poly" coords="401,374,516,380,517,405,398,406"href="#"title="Teras"data-maphilight='{"stroke":false,"fillColor":"ff0000","fillOpacity":1,"alwaysOn":true}' >
+<area id="1" shape="poly" color ="blue" coords="284,75,396,77,396,194,284,192"href="#"title="Kamar Tamu" data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'>
+<area  id="2" shape="poly"color ="red" coords="401,374,516,380,517,405,398,406"href="#"title="Teras"data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'>
 </map>
+</div>
         <div class="col-lg-6">
         <?= $this->session->flashdata('message') ?>
         
@@ -36,6 +37,7 @@
             <div id="log"></div>
         </div>
 </div>
+
 <script>
 $(document).ready(function() {
     $("img").on("click", function(event) {
@@ -46,7 +48,32 @@ $(document).ready(function() {
 });
 
 </script>
-        <hr>
+<script>$(function() {
+$('.map').maphilight({
+            fillColor: '008800'
+        });
+    });
+</script>
+
+<script>$(function() {
+        $('#1').click(function(e) {
+            e.preventDefault();
+            var data = $('#1').mouseout().data('maphilight') || {};
+            data.alwaysOn = !data.alwaysOn;
+            $('#1').data('maphilight', data).trigger('alwaysOn.maphilight');
+        });
+    });
+</script>
+<script>$(function() {
+        $('#2').click(function(e) {
+            e.preventDefault();
+            var data = $('#2').mouseout().data('maphilight') || {};
+            data.alwaysOn = !data.alwaysOn;
+            $('#2').data('maphilight', data).trigger('alwaysOn.maphilight');
+        });
+    });
+</script>
+<hr>
 <!-- Page Heading -->
 <h1 class="h3 mb-3 text-gray-800">List </h1>
             <div class="row">
