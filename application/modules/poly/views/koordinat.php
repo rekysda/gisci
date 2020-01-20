@@ -10,7 +10,6 @@
 <area id="1" shape="poly" color ="blue" coords="284,75,396,77,396,194,284,192"href="#"title="Kamar Tamu" data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'>
 <area  id="2" shape="poly"color ="red" coords="401,374,516,380,517,405,398,406"href="#"title="Teras"data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'>
 </map>
-</div>
         <div class="col-lg-6">
         <?= $this->session->flashdata('message') ?>
         
